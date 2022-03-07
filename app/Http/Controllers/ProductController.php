@@ -12,19 +12,19 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $viewBag['products'] = Product::orderBy('id', 'desc')->get();
+        $viewBag['products']  = Product::orderBy('id', 'DESC')->get(['id', 'category_id', 'name', 'stock', 'price', 'description']);
         return view('products.index', $viewBag);
     }
 
 
     public function create()
     {
-        
-       $viewBag['categories']= Category::all();
-        return  view('products.create',$viewBag);
+
+        $viewBag['categories'] = Category::all('id', 'category_name');
+        return  view('products.create', $viewBag);
     }
 
-    public function store(StoreProductRequest $request ,Product $product)
+    public function store(StoreProductRequest $request, Product $product)
     {
         try {
             $product->category_id  = $request->category_id;
@@ -32,13 +32,13 @@ class ProductController extends Controller
             $product->price = $request->price;
             $product->stock = $request->stock;
             $product->description   = $request->description;
+
             $product->save();
 
             return redirect()->route('products.index');
         } catch (\Throwable $th) {
             throw $th;
         }
-
     }
 
 
@@ -51,22 +51,28 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $viewBag['categories']= Category::all();
+        $viewBag['categories'] = Category::all('id', 'category_name');
         $viewBag['product'] = $product;
+
         return view('products.edit', $viewBag);
     }
 
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $product->category_id  = $request->category_id;
-        $product->name  = $request->name;
-        $product->price   = $request->price;
-        $product->stock   = $request->stock;
-        $product->description   = $request->description;
-        if($product->isDirty()){
-            $product->update();
+        try {
+            $product->category_id  = $request->category_id;
+            $product->name  = $request->name;
+            $product->price   = $request->price;
+            $product->stock   = $request->stock;
+            $product->description   = $request->description;
+            
+            if ($product->isDirty()) {
+                $product->update();
+            }
+            return redirect()->route('products.index');
+        } catch (\Throwable $th) {
+            throw $th;
         }
-        return redirect()->route('products.index');
     }
 
 

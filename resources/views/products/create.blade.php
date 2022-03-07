@@ -19,7 +19,7 @@
                                 <select class="form-control" name="category_id" required="">
                                     <option selected="" disabled="">== Choose Category ==</option>
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('category_id'))

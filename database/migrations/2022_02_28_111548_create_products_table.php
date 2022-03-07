@@ -6,29 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateProductsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+   
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('category_id')->nullable();
+            $table->bigInteger('category_id')->nullable();
+
             $table->string('name')->nullable();
             $table->string('price')->nullable();
             $table->string('stock')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
+
+        $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('products');

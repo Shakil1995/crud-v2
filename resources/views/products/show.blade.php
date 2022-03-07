@@ -22,7 +22,7 @@
                         <tbody>
                             <tr>
                                 <td>Category</td>
-                                <td>{{ $product->category->name }}</td>
+                                <td>{{ $product->category->category_name }}</td>
                             </tr>
                             <tr>
                                 <td>Name</td>

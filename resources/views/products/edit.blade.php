@@ -23,7 +23,7 @@
                                     <option selected="" disabled="">== Choose Category ==</option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}"
-                                            @if ($category->id == $product->category_id) selected="" @endif>{{ $category->name }}
+                                            @if ($category->id == $product->category_id) selected="" @endif>{{ $category->category_name }}
                                         </option>
                                     @endforeach
                                 </select>

@@ -24,7 +24,7 @@
                     @foreach ($products as $key => $product)
                         <tr class="text-center">
                             <td><b>{{ ++$key }}</b></td>
-                            <td>{{ $product->category->name ?? 'null' }}</td>
+                            <td>{{ $product->category->category_name ?? 'null' }}</td>
                             <td>{{ $product->name ?? 'null' }}</td>
                             <td>{{ $product->price ?? 'null' }}</td>
                             <td>{{ $product->stock ?? 'null' }}</td>
