@@ -65,7 +65,7 @@ class ProductController extends Controller
             $product->price   = $request->price;
             $product->stock   = $request->stock;
             $product->description   = $request->description;
-            
+
             if ($product->isDirty()) {
                 $product->update();
             }
@@ -79,6 +79,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
+        
         return redirect()->route('products.index');
     }
 }

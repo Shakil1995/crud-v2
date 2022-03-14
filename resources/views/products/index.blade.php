@@ -1,8 +1,10 @@
 @extends('products.layouts')
 @section('title', ' Product')
+
 @section('content')
 
     <div class="row ">
+        <div class="col-md-12 ">
 
         <a href="{{ route('products.create') }}" class="btn btn-success mb-3">Add Product</a>
 
@@ -45,6 +47,6 @@
             </tbody>
 
         </table>
-
+    </div>
     </div>
 @endsection
