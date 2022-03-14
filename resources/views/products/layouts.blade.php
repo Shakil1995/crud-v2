@@ -17,6 +17,13 @@
     </script>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+    <!-- jQuery -->
+<script src="{{asset ('plugins/jquery/jquery.min.js')}}"></script>
+    <!-- DataTables  CDN -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
 
 </head>
 
@@ -41,6 +48,17 @@
 
 
 
+
+
 </body>
+<script type="text/javascript">
+
+    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+    $(document).ready(function() {
+        $('#datatable').DataTable();
+    });
+    
+
+</script>
 
 </html>

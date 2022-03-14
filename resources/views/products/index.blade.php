@@ -3,12 +3,12 @@
 
 @section('content')
 
-    <div class="row ">
+    <div class="container ">
         <div class="col-md-12 ">
 
         <a href="{{ route('products.create') }}" class="btn btn-success mb-3">Add Product</a>
 
-        <table id="datatable" class="display table-sm table-bordered " style="width:100%">
+        <table id="datatable" class="display table-sm  " style="width:100%">
             <thead>
                 <tr class="text-center">
                     <th style="width: 7%">SL NO</th>
@@ -47,6 +47,8 @@
             </tbody>
 
         </table>
+
+
     </div>
     </div>
 @endsection
