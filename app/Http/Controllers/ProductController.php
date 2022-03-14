@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $viewBag['products']  = Product::orderBy('id', 'DESC')->get(['id', 'category_id', 'name', 'stock', 'price', 'description']);
+        $viewBag['products']  = Product::orderBy('id', 'DESC')->get(['id', 'category_id', 'name', 'stock', 'price']);
         return view('products.index', $viewBag);
     }
 
@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function create()
     {
 
-        $viewBag['categories'] = Category::all('id', 'category_name');
+        $viewBag['categories'] = Category::all(['id', 'category_name']);
         return  view('products.create', $viewBag);
     }
 
@@ -51,7 +51,7 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $viewBag['categories'] = Category::all('id', 'category_name');
+        $viewBag['categories'] = Category::all(['id', 'category_name']);
         $viewBag['product'] = $product;
 
         return view('products.edit', $viewBag);
