@@ -1,54 +1,64 @@
-@extends('products.layouts')
-@section('title', ' Product')
+@extends('layouts.app')
+
+@section('title', 'Products List')
 
 @section('content')
 
-    <div class="container ">
-        <div class="col-md-12 ">
+    <div class="row">
+        <div class="col-md-12">
 
-        <a href="{{ route('products.create') }}" class="btn btn-success mb-3">Add Product</a>
+            <a href="{{ route('products.create') }}" class="btn btn-success mb-3">Add Product</a>
 
-        <table id="datatable" class="display table-sm  " style="width:100%">
-            <thead>
-                <tr class="text-center">
-                    <th style="width: 7%">SL NO</th>
-                    <th style="width: 15%">Category</th>
-                    <th>Name</th>
-                    <th style="width: 10%">Price</th>
-                    <th style="width: 10%">Stock</th>
-                    <th style="width: 15%">Action</th>
+            <table id="datatable" class="display table table-sm">
+                <thead>
+                    <tr class="text-center">
+                        <th style="width: 7%;">SL NO</th>
+                        <th style="width: 15%;">Category</th>
+                        <th>Name</th>
+                        <th style="width: 10%;">Price</th>
+                        <th style="width: 10%;">Stock</th>
+                        <th style="width: 15%;">Action</th>
+                    </tr>
+                </thead>
 
-                </tr>
-            </thead>
-            <tbody>
+                <tbody>
 
-                @if ($products)
-                    @foreach ($products as $key => $product)
-                        <tr class="text-center">
-                            <td><b>{{ ++$key }}</b></td>
-                            <td>{{ $product->category->category_name ?? 'null' }}</td>
-                            <td>{{ $product->name ?? 'null' }}</td>
-                            <td>{{ $product->price ?? 'null' }}</td>
-                            <td>{{ $product->stock ?? 'null' }}</td>
-                            <td>
-                                <form action="{{ route('products.destroy', $product->id) }}" method="POST">
-                                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-sm btn-primary"> <i
-                                            class="fa fa-eye"></i></a>
-                                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-info"> <i
-                                            class="fa fa-edit"></i></a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                </form>
-                            </td>
+                    @if ($products)
+                        @foreach ($products as $key => $product)
+                            <tr class="text-center">
+                                <td class="font-weight-bold">{{ ++$key }}</td>
+                                <td>{{ option($product->category)->category_name ?? 'null' }}</td>
+                                <td>{{ $product->name ?? 'null' }}</td>
+                                <td>{{ $product->price ?? 'null' }}</td>
+                                <td>{{ $product->stock ?? 'null' }}</td>
+                                <td>
+                                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-sm btn-primary"> 
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+
+                                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-info"> 
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+
+                                    <form action="{{ route('products.destroy', $product->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="6">No Product Found!</td>
                         </tr>
-                    @endforeach
-                @endif
-            </tbody>
+                    @endif
+                </tbody>
+            </table>
 
-        </table>
-
-
-    </div>
+        </div>
     </div>
 @endsection
