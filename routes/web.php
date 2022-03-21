@@ -5,7 +5,7 @@ use \App\Http\Controllers\ProductController;
 
 
 Route::get('/', function () {
-    return view('products.layouts');
+    return view('layouts.app');
 });
 
 
