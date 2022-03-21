@@ -19,7 +19,10 @@ class CreateProductsTable extends Migration
             $table->string('description')->nullable();
             $table->timestamps();
 
-       $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('restrict');
+           $table->foreign('category_id')
+                   ->references('id')->on('categories')
+                   ->onUpdate('cascade')
+                   ->onDelete('restrict');
         });
     }
 
